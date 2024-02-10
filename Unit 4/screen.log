@@ -1,0 +1,90 @@
+Script started on 2023-09-16 16:25:32-0400
+]0;codio@focusfood-citizendinner: ~/workspacecodio@focusfood-citizendinner:~/workspace$ hive
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/opt/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/opt/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.30.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Hive Session ID = cde669cf-85ea-4bcc-933b-b6bc2f81e678
+
+Logging initialized using configuration in jar:file:/opt/hive/lib/hive-common-3.1.2.jar!/hive-log4j2.properties Async: true
+Hive Session ID = 077799ef-d056-4195-bcbb-938d981dc319
+Hive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.
+hive> create table NYSE (
+    > stock_exchange string,
+    > stock_symbol [19G[K[18G[K[17G[K[16G[K[15G[K[14G[K[13G[K[12G[K[11G[K[10G[K[9G[K[8G[K[7G[Kstock_exchange string,[7G[Kstock_symbol string,
+    > stock_data[16G[Ke string,
+    > stock_price_open_do[25G[K[24G[K[23G[K double,
+    > stock_price_hic[21G[Kgh st[25G[K[24G[Kdouble,
+    > stock_price_low double,
+    > stock_price_close doulbe[30G[K[29G[K[28G[K[27G[Kuble,
+    > stock_bv[14G[K[13G[Kvolume double,
+    > stock_price_adv[21G[Kj_close double)
+    > row format delimited fields terminated by ',';
+OK
+Time taken: 2.432 seconds
+hive> load data local inpath '/home/codio/c[43G[Kworkspace/data/in[59G[K[58G[KIN400/NYSE_daily_pric es_Q.csv' into table NYSE;
+Loading data to table default.nyse
+OK
+Time taken: 1.434 seconds
+hive> select a.Stock_SYMBOL,
+    > b.STOCK_SYMBOL,
+    > month(a.SOT[17G[K[16G[KTOCK_DATE), [27G[K
+    > AVG[9G[K[8G[K[7G[K(AVG(a.STOCK_PRICE_HIGH * b.STOCK_PRICE_HIGH) - AVG[57G[K[56G[K[55G[K(AVG(a.STOCK_PRICE_)[74G[KHIGH)  * AVG(b.STOCK_HI[17G[K[16G[KPRICE_HIGH)))
+    > FROM NYSE a JOIN NYSE b
+    > ON a.STOCK_DATE = b.STOCK_DATE
+    > WHERE a.SO[16G[KTOCK_SYMBLE[26G[K[25G[Ko[25G[KOL < b.STOCK_CYMBOL[43G[K[42G[K[41G[K[40G[K[39G[K[38G[KSYMO[41G[KBOL AND year ([54G[K[53G[K(a.STOCK_DATE) = 2008
+    > GROUP BY a.STOCK_SYMBOL, b.STOCK_SYMBOL, month(a.STOCK_DATE)
+    > ;
+Query ID = codio_20230916153628_39dbf5c1-e226-4ed0-92e4-00e552c3305a
+Total jobs = 1
+SLF4J: Found binding in [jar:file:/opt/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/opt/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.30.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1694895389195_0001, Tracking URL = http://focusfood-citizendinner:8088/proxy/application_1694895389195_0001/
+Kill Command = /opt/hadoop/bin/mapred job  -kill job_1694895389195_0001
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2023-09-16 15:36:56,522 Stage-2 map = 0%,  reduce = 0%
+2023-09-16 15:37:02,904 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 3.36 sec
+2023-09-16 15:37:09,118 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 6.0 sec
+MapReduce Total cumulative CPU time: 6 seconds 0 msec
+Ended Job = job_1694895389195_0001
+MapReduce Jobs Launched: 
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 6.0 sec   HDFS Read: 219874 HDFS Write: 870 SUCCESS
+Total MapReduce CPU Time Spent: 6 seconds 0 msec
+OK
+QRR	QTM	1	-0.13994965986395158
+QRR	QTM	2	2.060000000021489E-4
+QRR	QTM	3	0.0029300000000027637
+QRR	QXM	1	-0.015941496598614435
+QRR	QXM	2	0.005124999999992497
+QRR	QXM	3	-0.013358000000010861
+QTM	QXM	1	-0.003653287981865816
+QTM	QXM	2	-0.026352500000005108
+QTM	QXM	3	0.006056999999994872
+QTM	QXM	4	0.027271074380168514
+QTM	QXM	5	0.026688662131521212
+QTM	QXM	6	0.05287052154194427
+QTM	QXM	7	0.02312603305785199
+QTM	QXM	8	0.022061224489798192
+QTM	QXM	9	0.059760317460316514
+QTM	QXM	10	0.0035079395085060305
+QTM	QXM	11	0.018371745152354624
+QTM	QXM	12	-0.0038603305785122055
+Time taken: 43.116 seconds, Fetched: 18 row(s)
+hive> exit;
+]0;codio@focusfood-citizendinner: ~/workspacecodio@focusfood-citizendinner:~/workspace$ exit
+exit
+
+Script done on 2023-09-16 16:37:40-0400

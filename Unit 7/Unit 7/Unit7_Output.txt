@@ -1,0 +1,85 @@
+
+Unit 7 Assignment Part 1 / Module 5 Competency Assessment Part 1 Output
+
+10/10/2023 13:58:00 
+
+DATA SNIPPET
+   mean radius  mean texture  ...  worst fractal dimension  Diagnosis
+0        17.99         10.38  ...                  0.11890          0
+1        20.57         17.77  ...                  0.08902          0
+2        19.69         21.25  ...                  0.08758          0
+3        11.42         20.38  ...                  0.17300          0
+4        20.29         14.34  ...                  0.07678          0
+
+[5 rows x 31 columns]
+
+MEAN VALUES BY DIAGNOSIS
+           mean radius  mean texture  ...  worst symmetry  worst fractal dimension
+Diagnosis                             ...                                         
+0            17.462830     21.604906  ...        0.323468                 0.091530
+1            12.146524     17.914762  ...        0.270246                 0.079442
+
+[2 rows x 30 columns]
+
+MALIGNANT DIAGNOSIS DATA
+     mean radius  mean texture  ...  worst fractal dimension  Diagnosis
+0          17.99         10.38  ...                  0.11890          0
+1          20.57         17.77  ...                  0.08902          0
+2          19.69         21.25  ...                  0.08758          0
+3          11.42         20.38  ...                  0.17300          0
+4          20.29         14.34  ...                  0.07678          0
+..           ...           ...  ...                      ...        ...
+563        20.92         25.09  ...                  0.09873          0
+564        21.56         22.39  ...                  0.07115          0
+565        20.13         28.25  ...                  0.06637          0
+566        16.60         28.08  ...                  0.07820          0
+567        20.60         29.33  ...                  0.12400          0
+
+[212 rows x 31 columns]
+
+BENIGN DIAGNOSIS DATA
+     mean radius  mean texture  ...  worst fractal dimension  Diagnosis
+19        13.540         14.36  ...                  0.07259          1
+20        13.080         15.71  ...                  0.08183          1
+21         9.504         12.44  ...                  0.07773          1
+37        13.030         18.42  ...                  0.06169          1
+46         8.196         16.84  ...                  0.07409          1
+..           ...           ...  ...                      ...        ...
+558       14.590         22.68  ...                  0.08004          1
+559       11.510         23.93  ...                  0.08732          1
+560       14.050         27.15  ...                  0.08321          1
+561       11.200         29.37  ...                  0.05905          1
+568        7.760         24.54  ...                  0.07039          1
+
+[357 rows x 31 columns]
+
+Percentage of tumors classified as 'malignant' in this data set is: 37.258347978910365
+
+A good classifier should therefore outperform blind guessing knowing the proportions i.e. > 62% accuracy
+           Diagnosis    Percent
+Benign           357  62.741652
+Malignant        212  37.258348
+
+Cross Validation Accuracy RFC: Accuracy: 0.951648 SD: 0.033040
+
+Optimized number of estimators: dict_values([50])
+
+Model accuracy on test data: 0.956140350877193
+
+Random Forest Model Confusion Matrix
+
+                  Predicted Malignant  Predicted Benign
+Actual Malignant                   39                 3
+Actual Benign                       2                70
+
+Random Forest Model Classification Report
+
+              precision    recall  f1-score   support
+
+           0       0.95      0.93      0.94        42
+           1       0.96      0.97      0.97        72
+
+    accuracy                           0.96       114
+   macro avg       0.96      0.95      0.95       114
+weighted avg       0.96      0.96      0.96       114
+
